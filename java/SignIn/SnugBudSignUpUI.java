@@ -76,6 +76,14 @@ public class SnugBudSignUpUI {
         signupButton.setPreferredSize(new Dimension(200, 30));
         signupPanel.add(signupButton);
 
+        //Open Mainframe (added by Jon)
+        signupButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Sign Up Successful!");
+                    frame.dispose(); 
+                    SnugBudMainFrame mainFrame = new SnugBudMainFrame();
+                    mainFrame.setVisible(true);
+
         background.add(signupPanel); // Add panel to background
 
         frame.setVisible(true);
