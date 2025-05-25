@@ -1,0 +1,133 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class SnugBudMainFrame extends JFrame {
+    
+    public SnugBudMainFrame() {
+        // Set up the frame
+        setTitle("Snugbud - Naven the Frog");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1720, 800);
+        setLayout(new BorderLayout());
+        getContentPane().setSize(400, 400);
+
+        // Navigation panel
+        JPanel navPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 10));
+        navPanel.setBackground(new Color(255, 102, 51));
+
+         // Logo
+        ImageIcon snugLogo = new ImageIcon("./images/snuglogo.png");
+        JLabel snugbuds = new JLabel(snugLogo);
+        navPanel.add(snugbuds);
+
+        String[] tabs = {"Home", "About", "Shop", "Contact"};
+        for (String tab : tabs) {
+            JButton button = new JButton(tab);
+            button.setFocusPainted(false);
+            button.setBackground(new Color(255, 102, 51));
+            button.setBorderPainted(false);
+            button.setFont(new Font("Poppins", Font.PLAIN, 14));
+            navPanel.add(button);
+        }
+
+        JTextField searchField = new JTextField(15);
+        searchField.setFont(new Font("Poppins", Font.PLAIN, 14));
+        navPanel.add(searchField);
+
+        // Banner section
+        JPanel bannerPanel = new JPanel(new BorderLayout());
+        bannerPanel.setBackground(new Color(255, 220, 202));
+        bannerPanel.setPreferredSize(new Dimension(800, 100));
+
+        JLabel bannerText = new JLabel("Welcome to Snugbud!", SwingConstants.CENTER);
+        bannerText.setFont(new Font("Poppins", Font.BOLD, 28));
+        bannerText.setForeground(new Color(102, 51, 0));
+        bannerPanel.add(bannerText, BorderLayout.CENTER);
+
+        // Image section
+        ImageIcon frogImage = new ImageIcon("./images/naven.jpg");
+        Image scaledImage = frogImage.getImage().getScaledInstance(1720, 350, Image.SCALE_SMOOTH);
+        JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Top content
+        JPanel topContent = new JPanel();
+        topContent.setLayout(new BoxLayout(topContent, BoxLayout.Y_AXIS));
+        topContent.add(bannerPanel);
+        topContent.add(imageLabel);
+
+        // Reviews section
+        JPanel reviewsPanel = new JPanel();
+        reviewsPanel.setBackground(new Color(255, 220, 202));
+        reviewsPanel.setLayout(new BoxLayout(reviewsPanel, BoxLayout.Y_AXIS));
+        reviewsPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
+
+        JLabel reviewsLabel = new JLabel("Reviews");
+        reviewsLabel.setFont(new Font("Poppins", Font.BOLD, 26));
+        reviewsLabel.setForeground(new Color(102, 51, 0));
+        reviewsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        reviewsPanel.add(reviewsLabel);
+        reviewsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+
+        // Review container with side-by-side layout
+        JPanel reviewContainer = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
+        reviewContainer.setOpaque(false);
+        reviewsPanel.add(reviewContainer);
+
+        String[] reviews = {
+            "★★★★★ Great product, super cute and useful!",
+            "★★★★☆ Naven is the best mascot, love it!",
+            "★★★★★ Excellent quality and fast delivery!",
+            "★★★★☆ Friendly customer service and charming design.",
+            "★★★★★ Naven killed my grandma."
+        };
+
+        for (String review : reviews) {
+            JPanel reviewBox = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    Graphics2D g2 = (Graphics2D) g;
+                    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                    g2.setColor(getBackground());
+                    g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+                }
+            };
+            reviewBox.setOpaque(false);
+            reviewBox.setBackground(Color.WHITE);
+            reviewBox.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
+            reviewBox.setLayout(new BorderLayout());
+            reviewBox.setPreferredSize(new Dimension(350, 80));
+            reviewBox.setMaximumSize(new Dimension(350, 80));
+
+            JLabel reviewLabel = new JLabel(review);
+            reviewLabel.setFont(new Font("Poppins", Font.PLAIN, 16));
+            reviewLabel.setForeground(new Color(102, 51, 0));
+
+            JButton readMoreBtn = new JButton("Read more");
+            readMoreBtn.setFont(new Font("Poppins", Font.PLAIN, 12));
+            readMoreBtn.setFocusPainted(false);
+            readMoreBtn.setBackground(new Color(255, 220, 202));
+            readMoreBtn.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
+            JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+            rightPanel.setOpaque(false);
+            rightPanel.add(readMoreBtn);
+
+            reviewBox.add(reviewLabel, BorderLayout.CENTER);
+            reviewBox.add(rightPanel, BorderLayout.EAST);
+
+            reviewContainer.add(reviewBox);
+        }
+
+        // Final layout
+        add(navPanel, BorderLayout.NORTH);
+        add(topContent, BorderLayout.CENTER);
+        add(reviewsPanel, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        SnugBudMainFrame mainFrame = new SnugBudMainFrame();
+        mainFrame.setVisible(true);
+    }
+}
