@@ -7,7 +7,7 @@ import java.awt.event.*;
 public class SnugBudMainFrame extends JFrame {
     
     public SnugBudMainFrame() {
-        // Set up the frame
+        // fRAME
         setTitle("Snugbud - Naven the Frog");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1720, 800);
@@ -197,9 +197,9 @@ public class SnugBudMainFrame extends JFrame {
         add(navPanel, BorderLayout.NORTH);
         add(topContent, BorderLayout.CENTER);
         JScrollPane reviewsScrollPane = new JScrollPane(reviewsPanel);
-        reviewsScrollPane.setPreferredSize(new Dimension(1720, 200)); // adjust height as needed
-        reviewsScrollPane.setBorder(null); // optional: removes border for cleaner look
-        reviewsScrollPane.getVerticalScrollBar().setUnitIncrement(16); // smoother scrolling
+        reviewsScrollPane.setPreferredSize(new Dimension(1720, 200)); 
+        reviewsScrollPane.setBorder(null); 
+        reviewsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
         add(reviewsScrollPane, BorderLayout.SOUTH);
             }
 
