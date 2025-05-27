@@ -197,7 +197,7 @@ public class SnugBudMainFrame extends JFrame {
         add(navPanel, BorderLayout.NORTH);
         add(topContent, BorderLayout.CENTER);
         JScrollPane reviewsScrollPane = new JScrollPane(reviewsPanel);
-        reviewsScrollPane.setPreferredSize(new Dimension(1720, 350)); // adjust height as needed
+        reviewsScrollPane.setPreferredSize(new Dimension(1720, 200)); // adjust height as needed
         reviewsScrollPane.setBorder(null); // optional: removes border for cleaner look
         reviewsScrollPane.getVerticalScrollBar().setUnitIncrement(16); // smoother scrolling
         add(reviewsScrollPane, BorderLayout.SOUTH);
